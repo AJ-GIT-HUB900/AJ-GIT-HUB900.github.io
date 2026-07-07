@@ -3,10 +3,260 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My GitHub Website</title>
+    <title>Ajit Thapa | Future Software Engineer</title>
+    <style>
+        :root {
+            --bg-color: #0c0d10;
+            --main-text-color: #e0e0e0;
+            --accent-blue: #00bfff;
+            --card-bg: #16181e;
+            --code-font: 'Courier New', Courier, monospace;
+            --main-font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --glow: 0 0 10px var(--accent-blue);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--main-text-color);
+            font-family: var(--main-font);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        header {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            flex-direction: column;
+            position: relative;
+            background: radial-gradient(circle at center, #1b2131 0%, #0c0d10 70%);
+        }
+
+        header h1 {
+            font-size: 4rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-bottom: 20px;
+            color: white;
+            text-shadow: var(--glow);
+        }
+
+        header h2 {
+            font-weight: 300;
+            color: #b0c4de;
+            margin-bottom: 30px;
+            font-size: 1.5rem;
+        }
+
+        section {
+            padding: 80px 10vw;
+        }
+
+        h3 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: white;
+            border-bottom: 2px solid var(--accent-blue);
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: #b0c4de;
+            margin-bottom: 20px;
+            max-width: 800px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-card {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: default;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--glow);
+        }
+
+        .skill-title {
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            font-family: var(--code-font);
+            color: var(--accent-blue);
+            margin-bottom: 8px;
+        }
+
+        .gallery {
+            margin-top: 60px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .gallery-item {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery-label {
+            padding: 15px;
+            color: white;
+            font-size: 0.9rem;
+            font-family: var(--code-font);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.9rem;
+            color: #808080;
+        }
+
+        .cta-button {
+            margin-top: 40px;
+            padding: 15px 35px;
+            background-color: transparent;
+            color: var(--accent-blue);
+            border: 2px solid var(--accent-blue);
+            font-size: 1.1rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .cta-button:hover {
+            background-color: var(--accent-blue);
+            color: var(--bg-color);
+            box-shadow: var(--glow);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+            header h2 {
+                font-size: 1.2rem;
+            }
+            section {
+                padding: 60px 5vw;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to my website!</h1>
-    <p>This is my first page hosted on GitHub Pages.</p>
+
+    <header>
+        <h1>AJIT THAPA</h1>
+        <h2>Computer Science Student & Aspiring Developer</h2>
+        <p>Software Development Student, Class of 2028. Crafting code and exploring virtual realms.</p>
+        <a href="#about" class="cta-button">Explore My World</a>
+    </header>
+
+    <section id="about">
+        <h3>System.init()</h3>
+        <p>Hello! I am Ajit Thapa, a dedicated Software Development student with an anticipated graduation in 2028. My journey in technology is driven by a profound fascination with engineering digital systems and a life-long passion for interactive media.</p>
+        <p>Beyond the fundamental principles of data structures and algorithms, I explore the complex logic involved in application systems. Whether it is optimizing a rendering pipeline for real-time applications or designing a clean, component-based user interface, I find deep satisfaction in the elegant execution of technical concepts.</p>
+        <p>A key area of my focus is leveraging computer science to push the boundaries of software functionality and visual fidelity, blending rigorous engineering with creative design.</p>
+    </section>
+
+    <section id="skills">
+        <h3>Technical Expertise</h3>
+        <p>A summary of the core languages and tools within my developmental framework.</p>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-title">Programming</div>
+                <ul class="skill-list">
+                    <li>std::cpp Proficiency</li>
+                    <li>Object-Oriented Java</li>
+                    <li>Responsive HTML/CSS</li>
+                    <li>JavaScript Core Principles</li>
+                }</ul>
+            </div>
+            <div class="skill-card">
+                <div class="skill-title">Development Focus</div>
+                <ul class="skill-list">
+                    <li>Game Engine Architecture</li>
+                    <li>Application Design Patterns</li>
+                    <li>System-Level Programming</li>
+                    <li>Algorithmic Optimization</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h3>Interests & Projects</h3>
+        <p>I am an avid enthusiast of gaming and game development, analyzing both as a consumer and as a budding engineer. In the commercial sphere, I particularly admire the craftsmanship and visceral realism in EA games.</p>
+        <p>My current primary focus is on independent game development within the **Unity** engine. I am implementing component-based software design to build engaging core loops. My inaugural project is in the initial development cycle. **Project Release Date: TBD.**</p>
+    </section>
+
+    <section id="gallery">
+        <h3>Visual References</h3>
+        <p>A curated selection of images illustrating my areas of technological immersion.</p>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="image_6a659a.jpg" alt="Dynamic soccer action shot">
+                <div class="gallery-label">Fig 1. Simulation of high-fidelity real-time physics and competitive player mechanics (image_6a659a.jpg).</div>
+            </div>
+            <div class="gallery-item">
+                <img src="image_6a68f8.png" alt="Close-up of code on screen">
+                <div class="gallery-label">Fig 2. Component-based architecture development using modern frameworks (image_6a68f8.png).</div>
+            </div>
+            <div class="gallery-item">
+                <img src="image_6a6978.jpg" alt="Military squad with city on fire">
+                <div class="gallery-label">Fig 3. Analysis of environmental rendering and complex asset management in cinematic experiences (image_6a6978.jpg).</div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Ajit Thapa | Building the future, one commit at a time.</p>
+    </footer>
+
 </body>
 </html>
