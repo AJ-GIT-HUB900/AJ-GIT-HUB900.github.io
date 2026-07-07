@@ -1,505 +1,1000 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AJIT THAPA | CORE ARCHITECT 2028</title>
-    <!-- Importing cool tech fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Share+Tech+Mono&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-color: #050505; /* Deeper black for higher contrast */
-            --main-text-color: #e0e0e0;
-            --accent-neon-red: #ff073a; /* True neon red */
-            --dark-red: #c00000;
-            --card-bg: #111111;
-            --font-header: 'Orbitron', sans-serif;
-            --font-code: 'Share Tech Mono', monospace;
-            --font-body: 'Montserrat', sans-serif;
-            --neon-glow: 0 0 10px rgba(255, 7, 58, 0.8), 0 0 20px rgba(255, 7, 58, 0.6);
-            --neon-border-glow: 0 0 5px rgba(255, 7, 58, 0.5);
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ajit Thapa // Software Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-void:#08080c;
+    --bg-panel:#111117;
+    --bg-panel-2:#16161f;
+    --neon-red:#ff0a3c;
+    --neon-red-soft:#ff3860;
+    --neon-red-dim:#4a0714;
+    --text-bright:#f1f1f5;
+    --text-mid:#9797a6;
+    --text-dim:#5c5c6b;
+    --line:#26262f;
+  }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            scroll-behavior: smooth;
-        }
+  *{margin:0;padding:0;box-sizing:border-box;}
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--main-text-color);
-            font-family: var(--font-body);
-            line-height: 1.7;
-            overflow-x: hidden;
-            letter-spacing: 0.5px;
-        }
+  html{scroll-behavior:smooth;}
 
-        /* --- Animations --- */
-        @keyframes pulseGlow {
-            0% { box-shadow: 0 0 10px rgba(255, 7, 58, 0.6); }
-            50% { box-shadow: 0 0 20px rgba(255, 7, 58, 0.9), 0 0 30px rgba(255, 7, 58, 0.7); }
-            100% { box-shadow: 0 0 10px rgba(255, 7, 58, 0.6); }
-        }
+  body{
+    background:var(--bg-void);
+    color:var(--text-bright);
+    font-family:'Rajdhani',sans-serif;
+    overflow-x:hidden;
+    position:relative;
+  }
 
-        @keyframes textFlicker {
-            0% { opacity: 1; text-shadow: var(--neon-glow); }
-            2% { opacity: 0.8; text-shadow: none; }
-            4% { opacity: 1; text-shadow: var(--neon-glow); }
-            19% { opacity: 1; text-shadow: var(--neon-glow); }
-            20% { opacity: 0.9; text-shadow: none; }
-            21% { opacity: 1; text-shadow: var(--neon-glow); }
-            100% { opacity: 1; text-shadow: var(--neon-glow); }
-        }
+  ::selection{background:var(--neon-red);color:#000;}
 
-        @keyframes scanline {
-            0% { transform: translateY(-100%); }
-            100% { transform: translateY(100vh); }
-        }
+  ::-webkit-scrollbar{width:8px;}
+  ::-webkit-scrollbar-track{background:var(--bg-void);}
+  ::-webkit-scrollbar-thumb{background:var(--neon-red-dim);border-radius:4px;}
+  ::-webkit-scrollbar-thumb:hover{background:var(--neon-red);}
 
-        /* --- Global Elements --- */
-        .scanline-effect {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: rgba(255, 7, 58, 0.1);
-            opacity: 0.3;
-            animation: scanline 8s linear infinite;
-            pointer-events: none;
-            z-index: 9999;
-        }
+  /* ---------- ANIMATED GRID BACKGROUND ---------- */
+  .grid-bg{
+    position:fixed;
+    inset:0;
+    z-index:0;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size:48px 48px;
+    -webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 20%, #000 20%, transparent 80%);
+    mask-image:radial-gradient(ellipse 80% 60% at 50% 20%, #000 20%, transparent 80%);
+    animation:gridDrift 40s linear infinite;
+    opacity:0.5;
+  }
+  @keyframes gridDrift{
+    0%{background-position:0 0;}
+    100%{background-position:48px 96px;}
+  }
 
-        a {
-            color: var(--accent-neon-red);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-family: var(--font-header);
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-        }
+  .scanline{
+    position:fixed;
+    inset:0;
+    z-index:1;
+    pointer-events:none;
+    background:repeating-linear-gradient(
+      to bottom,
+      rgba(255,10,60,0.025) 0px,
+      rgba(255,10,60,0.025) 1px,
+      transparent 2px,
+      transparent 4px
+    );
+  }
 
-        a:hover {
-            color: white;
-            text-shadow: var(--neon-glow);
-        }
+  .glow-orb{
+    position:fixed;
+    width:600px;height:600px;
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(255,10,60,0.16), transparent 70%);
+    top:-200px;
+    left:50%;
+    transform:translateX(-50%);
+    z-index:0;
+    pointer-events:none;
+    animation:pulseGlow 6s ease-in-out infinite;
+  }
+  @keyframes pulseGlow{
+    0%,100%{opacity:0.6;}
+    50%{opacity:1;}
+  }
 
-        p {
-            font-size: 1.1rem;
-            color: #b0b0b0;
-            margin-bottom: 25px;
-            font-weight: 300;
-        }
+  /* ---------- NAV ---------- */
+  nav{
+    position:fixed;
+    top:0;left:0;right:0;
+    z-index:100;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:22px 6%;
+    background:rgba(8,8,12,0.75);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--line);
+  }
 
-        .highlight-text {
-            color: var(--accent-neon-red);
-            font-weight: 700;
-            font-family: var(--font-header);
-        }
+  .logo{
+    font-family:'Orbitron',sans-serif;
+    font-weight:900;
+    font-size:1.1rem;
+    letter-spacing:2px;
+    color:var(--text-bright);
+  }
+  .logo span{color:var(--neon-red);}
 
-        /* --- Header / Hero --- */
-        header {
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            flex-direction: column;
-            position: relative;
-            background: 
-                radial-gradient(circle at center, #1a0206 0%, #050505 70%),
-                url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48ZyBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZjA3M2EiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTAgMGg0MHY0MEgwVjB6bTIwIDIwaDIwdjIwSDIWMjB6TTAgMjBoMjB2MjBIMFYyMHoyMCAwaDIwdjIwSDIwVjB6Ii8+PC9nPjwvZz48L3N2Zz4='); /* Subtle subtle grid */
-        }
+  .nav-links{
+    display:flex;
+    gap:38px;
+    list-style:none;
+  }
+  .nav-links a{
+    color:var(--text-mid);
+    text-decoration:none;
+    font-size:0.92rem;
+    font-weight:600;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    position:relative;
+    transition:color 0.3s ease;
+  }
+  .nav-links a::after{
+    content:'';
+    position:absolute;
+    bottom:-6px;left:0;
+    width:0;height:2px;
+    background:var(--neon-red);
+    box-shadow:0 0 8px var(--neon-red);
+    transition:width 0.3s ease;
+  }
+  .nav-links a:hover{color:var(--text-bright);}
+  .nav-links a:hover::after{width:100%;}
 
-        header::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100px;
-            background: linear-gradient(to top, var(--bg-color), transparent);
-        }
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    z-index:2;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:0 6%;
+  }
 
-        header h1 {
-            font-family: var(--font-header);
-            font-size: 4.5rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 8px;
-            color: white;
-            text-shadow: var(--neon-glow);
-            animation: textFlicker 5s infinite;
-            margin-bottom: 10px;
-        }
+  .hero-tag{
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.85rem;
+    color:var(--neon-red-soft);
+    letter-spacing:4px;
+    text-transform:uppercase;
+    margin-bottom:22px;
+    border:1px solid var(--neon-red-dim);
+    padding:6px 16px;
+    border-radius:2px;
+    background:rgba(255,10,60,0.05);
+  }
 
-        header h2 {
-            font-family: var(--font-code);
-            font-size: 1.6rem;
-            font-weight: 300;
-            color: #888;
-            letter-spacing: 2px;
-            margin-bottom: 40px;
-        }
+  .hero-tag::before{
+    content:'● ';
+    color:var(--neon-red);
+    animation:blink 1.6s infinite;
+  }
+  @keyframes blink{
+    0%,45%{opacity:1;}
+    50%,95%{opacity:0.15;}
+    100%{opacity:1;}
+  }
 
-        header .status-bar {
-            border: 1px solid var(--accent-neon-red);
-            padding: 10px 30px;
-            font-family: var(--font-code);
-            color: var(--accent-neon-red);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 60px;
-            box-shadow: var(--neon-border-glow);
-            animation: pulseGlow 3s infinite;
-        }
+  h1.hero-name{
+    font-family:'Orbitron',sans-serif;
+    font-weight:900;
+    font-size:clamp(2.6rem, 8vw, 6.2rem);
+    letter-spacing:2px;
+    line-height:1.05;
+    color:var(--text-bright);
+    text-shadow:
+      0 0 8px rgba(255,10,60,0.5),
+      0 0 24px rgba(255,10,60,0.25);
+    position:relative;
+  }
 
-        /* --- Section Styling --- */
-        section {
-            padding: 120px 15vw;
-            position: relative;
-        }
+  h1.hero-name .glitch-wrap{
+    position:relative;
+    display:inline-block;
+    color:var(--neon-red);
+  }
+  h1.hero-name .glitch-wrap::before,
+  h1.hero-name .glitch-wrap::after{
+    content:attr(data-text);
+    position:absolute;
+    top:0;left:0;
+    width:100%;
+    overflow:hidden;
+    color:var(--neon-red);
+  }
+  h1.hero-name .glitch-wrap::before{
+    clip-path:polygon(0 0, 100% 0, 100% 45%, 0 45%);
+    transform:translate(-2px,-1px);
+    opacity:0.7;
+    animation:glitchTop 3.2s infinite linear;
+  }
+  h1.hero-name .glitch-wrap::after{
+    clip-path:polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+    transform:translate(2px,1px);
+    opacity:0.7;
+    color:#5affe0;
+    animation:glitchBottom 3.2s infinite linear;
+  }
+  @keyframes glitchTop{
+    0%,92%,100%{transform:translate(-2px,-1px);}
+    93%{transform:translate(3px,-2px);}
+    95%{transform:translate(-4px,1px);}
+    97%{transform:translate(2px,2px);}
+  }
+  @keyframes glitchBottom{
+    0%,92%,100%{transform:translate(2px,1px);}
+    93%{transform:translate(-3px,2px);}
+    95%{transform:translate(4px,-1px);}
+    97%{transform:translate(-2px,-2px);}
+  }
 
-        h3 {
-            font-family: var(--font-header);
-            font-size: 2.8rem;
-            margin-bottom: 50px;
-            color: white;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            display: inline-block;
-            position: relative;
-        }
+  .hero-role{
+    font-family:'JetBrains Mono',monospace;
+    font-size:clamp(1rem,2.4vw,1.3rem);
+    color:var(--text-mid);
+    margin-top:26px;
+    min-height:1.6em;
+  }
+  .hero-role .cursor{
+    display:inline-block;
+    width:9px;height:1.1em;
+    background:var(--neon-red);
+    margin-left:4px;
+    vertical-align:middle;
+    animation:blink 1s steps(2) infinite;
+    box-shadow:0 0 6px var(--neon-red);
+  }
 
-        h3::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 80%;
-            height: 3px;
-            background-color: var(--accent-neon-red);
-            box-shadow: var(--neon-glow);
-        }
+  .hero-desc{
+    max-width:600px;
+    margin-top:28px;
+    color:var(--text-mid);
+    font-size:1.05rem;
+    line-height:1.7;
+  }
 
-        /* --- About --- */
-        #about p {
-            max-width: 900px;
-        }
+  .hero-cta{
+    margin-top:44px;
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+    justify-content:center;
+  }
 
-        /* --- Coding / Skills --- */
-        #coding {
-            background: linear-gradient(135deg, #090909 0%, #050505 100%);
-            border-top: 1px solid #111;
-            border-bottom: 1px solid #111;
-        }
+  .btn{
+    font-family:'Rajdhani',sans-serif;
+    font-weight:700;
+    font-size:0.95rem;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    padding:14px 32px;
+    border-radius:2px;
+    text-decoration:none;
+    transition:all 0.3s ease;
+    cursor:pointer;
+  }
+  .btn-primary{
+    background:var(--neon-red);
+    color:#0a0a0d;
+    border:1px solid var(--neon-red);
+    box-shadow:0 0 20px rgba(255,10,60,0.4);
+  }
+  .btn-primary:hover{
+    box-shadow:0 0 34px rgba(255,10,60,0.8);
+    transform:translateY(-2px);
+  }
+  .btn-ghost{
+    background:transparent;
+    color:var(--text-bright);
+    border:1px solid var(--line);
+  }
+  .btn-ghost:hover{
+    border-color:var(--neon-red);
+    color:var(--neon-red-soft);
+  }
 
-        .coding-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
+  .scroll-hint{
+    position:absolute;
+    bottom:36px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.75rem;
+    letter-spacing:3px;
+    color:var(--text-dim);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:10px;
+  }
+  .scroll-hint .line{
+    width:1px;height:34px;
+    background:linear-gradient(var(--neon-red), transparent);
+    animation:scrollLine 2s ease-in-out infinite;
+  }
+  @keyframes scrollLine{
+    0%{transform:scaleY(0);transform-origin:top;}
+    50%{transform:scaleY(1);transform-origin:top;}
+    51%{transform:scaleY(1);transform-origin:bottom;}
+    100%{transform:scaleY(0);transform-origin:bottom;}
+  }
 
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
+  /* ---------- SECTION GENERIC ---------- */
+  section{
+    position:relative;
+    z-index:2;
+    padding:130px 6%;
+    max-width:1180px;
+    margin:0 auto;
+  }
 
-        .skill-card {
-            background-color: var(--card-bg);
-            padding: 40px;
-            border-radius: 4px;
-            border: 1px solid #1a1a1a;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
-        }
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    gap:18px;
+    margin-bottom:60px;
+  }
+  .section-num{
+    font-family:'JetBrains Mono',monospace;
+    color:var(--neon-red);
+    font-size:0.9rem;
+  }
+  .section-title{
+    font-family:'Orbitron',sans-serif;
+    font-size:clamp(1.6rem,3.4vw,2.4rem);
+    font-weight:700;
+    letter-spacing:1px;
+  }
+  .section-title span{color:var(--neon-red);}
+  .section-line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(90deg, var(--line), transparent);
+  }
 
-        .skill-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--accent-neon-red), transparent);
-            transition: all 0.6s;
-        }
+  .reveal{
+    opacity:0;
+    transform:translateY(36px);
+    transition:opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.is-visible{
+    opacity:1;
+    transform:translateY(0);
+  }
 
-        .skill-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--dark-red);
-            box-shadow: 0 10px 30px rgba(255, 7, 58, 0.2);
-        }
+  /* ---------- ABOUT ---------- */
+  .about-grid{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:60px;
+    align-items:start;
+  }
+  .about-text p{
+    color:var(--text-mid);
+    font-size:1.08rem;
+    line-height:1.85;
+    margin-bottom:20px;
+  }
+  .about-text strong{color:var(--text-bright);font-weight:600;}
+  .about-text .accent{color:var(--neon-red-soft);}
 
-        .skill-card:hover::before {
-            left: 100%;
-        }
+  .stat-block{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+  }
+  .stat-card{
+    background:var(--bg-panel);
+    border:1px solid var(--line);
+    padding:26px;
+    border-radius:4px;
+    transition:border-color 0.3s ease, transform 0.3s ease;
+  }
+  .stat-card:hover{
+    border-color:var(--neon-red-dim);
+    transform:translateY(-4px);
+  }
+  .stat-num{
+    font-family:'Orbitron',sans-serif;
+    font-size:2.1rem;
+    font-weight:900;
+    color:var(--neon-red);
+    text-shadow:0 0 14px rgba(255,10,60,0.4);
+  }
+  .stat-label{
+    font-size:0.85rem;
+    color:var(--text-mid);
+    letter-spacing:1px;
+    text-transform:uppercase;
+    margin-top:6px;
+  }
 
-        .skill-title {
-            color: white;
-            font-family: var(--font-header);
-            font-size: 1.6rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            letter-spacing: 1px;
-            display: flex;
-            align-items: center;
-        }
+  /* ---------- SKILLS ---------- */
+  .skills-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(300px,1fr));
+    gap:24px;
+  }
+  .skill-card{
+    background:var(--bg-panel);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:32px;
+    position:relative;
+    overflow:hidden;
+    transition:transform 0.35s ease, border-color 0.35s ease;
+  }
+  .skill-card::before{
+    content:'';
+    position:absolute;
+    top:0;left:0;
+    width:100%;height:2px;
+    background:linear-gradient(90deg, transparent, var(--neon-red), transparent);
+    transform:scaleX(0);
+    transition:transform 0.4s ease;
+  }
+  .skill-card:hover{
+    transform:translateY(-6px);
+    border-color:var(--neon-red-dim);
+  }
+  .skill-card:hover::before{transform:scaleX(1);}
 
-        .skill-title::before {
-            content: '>';
-            color: var(--accent-neon-red);
-            font-family: var(--font-code);
-            margin-right: 15px;
-            text-shadow: var(--neon-glow);
-        }
+  .skill-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:16px;
+  }
+  .skill-name{
+    font-family:'Orbitron',sans-serif;
+    font-size:1.15rem;
+    font-weight:700;
+  }
+  .skill-tag{
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.7rem;
+    color:var(--neon-red-soft);
+    border:1px solid var(--neon-red-dim);
+    padding:3px 10px;
+    border-radius:20px;
+  }
+  .skill-desc{
+    color:var(--text-mid);
+    font-size:0.95rem;
+    line-height:1.7;
+    margin-bottom:18px;
+  }
+  .bar-track{
+    height:5px;
+    background:var(--bg-panel-2);
+    border-radius:4px;
+    overflow:hidden;
+  }
+  .bar-fill{
+    height:100%;
+    background:linear-gradient(90deg, var(--neon-red-dim), var(--neon-red));
+    border-radius:4px;
+    width:0%;
+    box-shadow:0 0 10px rgba(255,10,60,0.5);
+    transition:width 1.4s cubic-bezier(0.16,1,0.3,1);
+  }
 
-        .skill-list {
-            list-style: none;
-            font-family: var(--font-code);
-            font-size: 1rem;
-            color: #aaa;
-        }
+  /* ---------- EA GAMES ---------- */
+  .ea-panel{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:50px;
+    align-items:center;
+    background:linear-gradient(135deg, var(--bg-panel), var(--bg-void));
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:50px;
+    position:relative;
+    overflow:hidden;
+  }
+  .ea-panel::after{
+    content:'';
+    position:absolute;
+    top:-50%;right:-20%;
+    width:400px;height:400px;
+    background:radial-gradient(circle, rgba(255,10,60,0.14), transparent 70%);
+    pointer-events:none;
+  }
+  .ea-media img{
+    width:100%;
+    border-radius:8px;
+    border:1px solid var(--line);
+    display:block;
+    filter:grayscale(15%) contrast(1.05);
+    transition:transform 0.5s ease, filter 0.5s ease;
+  }
+  .ea-media{
+    border-radius:8px;
+    overflow:hidden;
+    box-shadow:0 0 30px rgba(255,10,60,0.15);
+  }
+  .ea-media:hover img{
+    transform:scale(1.05);
+    filter:grayscale(0%) contrast(1.1);
+  }
+  .ea-text h3{
+    font-family:'Orbitron',sans-serif;
+    font-size:1.6rem;
+    margin-bottom:18px;
+  }
+  .ea-text h3 span{color:var(--neon-red);}
+  .ea-text p{
+    color:var(--text-mid);
+    line-height:1.8;
+    margin-bottom:16px;
+  }
+  .ea-titles{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:20px;
+  }
+  .ea-chip{
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.78rem;
+    padding:7px 14px;
+    border:1px solid var(--neon-red-dim);
+    border-radius:20px;
+    color:var(--text-bright);
+    background:rgba(255,10,60,0.06);
+  }
 
-        .skill-list li {
-            margin-bottom: 10px;
-            display: flex;
-            justify-content: space-between;
-        }
+  /* ---------- PROJECTS ---------- */
+  .project-card{
+    display:grid;
+    grid-template-columns:1fr 1.1fr;
+    gap:0;
+    background:var(--bg-panel);
+    border:1px solid var(--line);
+    border-radius:10px;
+    overflow:hidden;
+    margin-bottom:30px;
+    transition:border-color 0.4s ease;
+  }
+  .project-card:hover{border-color:var(--neon-red-dim);}
+  .project-media{
+    position:relative;
+    overflow:hidden;
+    min-height:280px;
+  }
+  .project-media img{
+    width:100%;height:100%;
+    object-fit:cover;
+    display:block;
+    filter:grayscale(20%);
+    transition:transform 0.6s ease, filter 0.6s ease;
+  }
+  .project-card:hover .project-media img{
+    transform:scale(1.08);
+    filter:grayscale(0%);
+  }
+  .project-status{
+    position:absolute;
+    top:18px;left:18px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.72rem;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    background:rgba(8,8,12,0.85);
+    border:1px solid var(--neon-red);
+    color:var(--neon-red-soft);
+    padding:6px 12px;
+    border-radius:20px;
+  }
+  .project-status::before{
+    content:'';
+    display:inline-block;
+    width:6px;height:6px;
+    border-radius:50%;
+    background:var(--neon-red);
+    margin-right:8px;
+    box-shadow:0 0 8px var(--neon-red);
+    animation:blink 1.4s infinite;
+  }
+  .project-body{
+    padding:44px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+  }
+  .project-body h3{
+    font-family:'Orbitron',sans-serif;
+    font-size:1.5rem;
+    margin-bottom:14px;
+  }
+  .project-body p{
+    color:var(--text-mid);
+    line-height:1.8;
+    margin-bottom:20px;
+  }
+  .project-meta{
+    display:flex;
+    gap:24px;
+    flex-wrap:wrap;
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.82rem;
+    color:var(--text-dim);
+  }
+  .project-meta b{color:var(--text-bright);font-weight:600;}
+  .project-stack{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-top:20px;
+  }
+  .stack-pill{
+    font-size:0.75rem;
+    font-family:'JetBrains Mono',monospace;
+    padding:5px 12px;
+    background:var(--bg-panel-2);
+    border:1px solid var(--line);
+    border-radius:4px;
+    color:var(--text-mid);
+  }
 
-        .skill-list li span {
-            color: var(--main-text-color);
-        }
+  /* ---------- CONTACT ---------- */
+  .contact-box{
+    text-align:center;
+    padding:80px 6%;
+    background:linear-gradient(180deg, transparent, rgba(255,10,60,0.04));
+    border-top:1px solid var(--line);
+  }
+  .contact-box h2{
+    font-family:'Orbitron',sans-serif;
+    font-size:clamp(1.8rem,4vw,3rem);
+    margin-bottom:20px;
+  }
+  .contact-box h2 span{color:var(--neon-red);}
+  .contact-box p{
+    color:var(--text-mid);
+    max-width:520px;
+    margin:0 auto 36px;
+    line-height:1.7;
+  }
+  .contact-links{
+    display:flex;
+    gap:24px;
+    justify-content:center;
+    flex-wrap:wrap;
+    margin-bottom:60px;
+  }
 
-        .coding-visual {
-            position: relative;
-            border: 1px solid #1a1a1a;
-            border-radius: 4px;
-            overflow: hidden;
-            box-shadow: 0 15px 50px rgba(0,0,0,0.5);
-        }
+  footer{
+    text-align:center;
+    padding:26px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.78rem;
+    color:var(--text-dim);
+    border-top:1px solid var(--line);
+  }
+  footer span{color:var(--neon-red-soft);}
 
-        .coding-visual img {
-            width: 100%;
-            display: block;
-            transition: transform 0.5s ease;
-        }
-
-        .coding-visual:hover img {
-            transform: scale(1.03);
-        }
-
-        /* --- EA/Gaming Section --- */
-        #gaming {
-            position: relative;
-            background-color: #080808;
-        }
-
-        .gaming-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 40px;
-            margin-bottom: 60px;
-        }
-
-        .gaming-card {
-            position: relative;
-            border: 1px solid #111;
-            border-radius: 4px;
-            overflow: hidden;
-            transition: all 0.4s ease;
-        }
-
-        .gaming-card:hover {
-            border-color: var(--dark-red);
-            box-shadow: 0 0 20px rgba(255, 7, 58, 0.3);
-        }
-
-        .gaming-card img {
-            width: 100%;
-            height: auto;
-            display: block;
-            filter: grayscale(30%) contrast(110%);
-            transition: all 0.5s ease;
-        }
-
-        .gaming-card:hover img {
-            filter: grayscale(0%) contrast(100%);
-            transform: scale(1.02);
-        }
-
-        .gaming-description {
-            padding: 30px;
-            background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.9));
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-        }
-
-        .gaming-description h4 {
-            font-family: var(--font-header);
-            color: white;
-            font-size: 1.4rem;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
-        }
-
-        .ea-focus {
-            max-width: 800px;
-            margin: 80px auto 0 auto;
-            border-left: 3px solid var(--accent-neon-red);
-            padding: 40px;
-            background-color: var(--card-bg);
-            box-shadow: var(--neon-border-glow);
-        }
-
-        /* --- Project TBD --- */
-        #project-tbd {
-            text-align: center;
-            background: radial-gradient(circle at center, #101010 0%, var(--bg-color) 100%);
-        }
-
-        #project-tbd h3 {
-            animation: textFlicker 8s infinite;
-        }
-
-        .tbd-counter {
-            font-family: var(--font-header);
-            font-size: 3.5rem;
-            font-weight: 700;
-            color: var(--accent-neon-red);
-            text-shadow: var(--neon-glow);
-            margin: 40px 0;
-            letter-spacing: 5px;
-        }
-
-        /* --- Footer --- */
-        footer {
-            text-align: center;
-            padding: 60px;
-            border-top: 1px solid #111;
-            font-size: 0.9rem;
-            color: #666;
-            font-family: var(--font-code);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* --- Media Queries --- */
-        @media (max-width: 1200px) {
-            header h1 { font-size: 3.5rem; letter-spacing: 5px; }
-            section { padding: 100px 8vw; }
-            .coding-container { grid-template-columns: 1fr; }
-        }
-
-        @media (max-width: 768px) {
-            header h1 { font-size: 2.5rem; letter-spacing: 3px; }
-            header h2 { font-size: 1.2rem; }
-            h3 { font-size: 2rem; }
-            .gaming-grid { grid-template-columns: 1fr; }
-            section { padding: 80px 5vw; }
-        }
-
-    </style>
+  @media (max-width:800px){
+    .nav-links{display:none;}
+    .about-grid, .ea-panel, .project-card{grid-template-columns:1fr;}
+    .project-media{min-height:220px;}
+  }
+</style>
 </head>
 <body>
 
-    <div class="scanline-effect"></div>
+<div class="grid-bg"></div>
+<div class="glow-orb"></div>
+<div class="scanline"></div>
 
-    <header>
-        <div class="status-bar">System Status: Operational // Class of 2028</div>
-        <h1>AJIT THAPA</h1>
-        <h2>Core Architect. Developer. Gaming Enthusiast.</h2>
-        <a href="#about">> INITIALIZE EXPLORATION</a>
-    </header>
+<nav>
+  <div class="logo">AJIT<span>.</span>THAPA</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#ea">EA Games</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
 
-    <section id="about">
-        <h3>INTRODUCTION</h3>
-        <p>I am Ajit Thapa, a dedicated Software Development student projecting a 2028 completion cycle. My engineering directive focuses on compiling robust algorithmic solutions, optimizing complex data structures, and architecting elegant digital frameworks.</p>
-        <p>My methodology merges mathematical precision with structural logic, transforming abstract concepts into high-performance executed systems. I am particularly interested in the intersection of <span class="highlight-text">system-level optimization</span> and intuitive user interface design.</p>
-    </section>
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="hero-tag">Software Development Student // Class of 2028</div>
+  <h1 class="hero-name">
+    AJIT <span class="glitch-wrap" data-text="THAPA">THAPA</span>
+  </h1>
+  <div class="hero-role">
+    <span id="typewriter"></span><span class="cursor"></span>
+  </div>
+  <p class="hero-desc">
+    Building systems from the metal up and worlds from the pixel up.
+    I write clean, efficient code by day and design game mechanics by night —
+    currently deep in C++, Java, and the Unity engine.
+  </p>
+  <div class="hero-cta">
+    <a href="#projects" class="btn btn-primary">View Projects</a>
+    <a href="#contact" class="btn btn-ghost">Get In Touch</a>
+  </div>
+  <div class="scroll-hint">
+    <span>SCROLL</span>
+    <div class="line"></div>
+  </div>
+</section>
 
-    <section id="coding">
-        <h3>Technical Compilations</h3>
-        <p>Leveraging low-level control and high-level abstraction to engineer performant systems.</p>
-        
-        <div class="coding-container">
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <div class="skill-title">Core Languages</div>
-                    <ul class="skill-list">
-                        <li>System Programming: <span>C++ // std</span></li>
-                        <li>Platform Independent: <span>Java // JVM</span></li>
-                        <li>Structural Markup: <span>HTML // DOM</span></li>
-                        <li>Dynamic Execution: <span>JavaScript</span></li>
-                    </ul>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-title">Systems Architecture</div>
-                    <ul class="skill-list">
-                        <li>Pattern Implementation: <span>OOP // MVC</span></li>
-                        <li>Resource Management</li>
-                        <li>State Optimization</li>
-                        <li>Component-Based Design</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="coding-visual">
-                <img src="image_6a68f8.png" alt="Integrated Development Environment interface illustrating code structure and context management.">
-            </div>
-        </div>
-    </section>
+<!-- ================= ABOUT ================= -->
+<section id="about">
+  <div class="section-head reveal">
+    <span class="section-num">01</span>
+    <span class="section-title">About <span>Me</span></span>
+    <span class="section-line"></span>
+  </div>
 
-    <section id="gaming">
-        <h3>Interactive Mechanics & Physics</h3>
-        <p>Analyzing cinematic fidelity, environmental rendering pipelines, and systemic gameplay logic within modern interactive media.</p>
-        
-        <div class="gaming-grid">
-            <div class="gaming-card">
-                <img src="image_6a659a.jpg" alt="Dynamic real-time simulation shot focusing on complex animation and physics interaction.">
-                <div class="gaming-description">
-                    <h4>Real-Time Simulation</h4>
-                </div>
-            </div>
-            <div class="gaming-card">
-                <img src="image_6a6978.jpg" alt="Cinematic environmental rendering illustrating complex lighting and shader techniques.">
-                <div class="gaming-description">
-                    <h4>Atmospheric Rendering</h4>
-                </div>
-            </div>
-        </div>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p>
+        I'm <strong>Ajit Thapa</strong>, a software development student on track to graduate in
+        <strong class="accent">2028</strong>. My focus sits at the intersection of
+        <strong>systems-level programming</strong> and <strong>interactive entertainment</strong> —
+        I care about how code performs under the hood as much as how it feels to the player on screen.
+      </p>
+      <p>
+        My core stack runs on <strong>C++</strong> and <strong>Java</strong>, giving me a solid grip on
+        object-oriented design, memory management, and data structures, complemented by
+        <strong>HTML</strong> for front-end and web-based projects. Outside the classroom, I'm
+        self-teaching <strong>Unity</strong> and game development fundamentals, gradually building the
+        foundation I'll need to ship my own titles.
+      </p>
+      <p>
+        Gaming isn't just a hobby for me — it's the reason I got into this field.
+        I'm a longtime fan of <strong class="accent">EA</strong> and its catalog of titles,
+        and that appreciation for polished, large-scale game systems is a big part of what
+        pulls me toward game development as a career path.
+      </p>
+    </div>
 
-        <div class="ea-focus">
-            <p>A significant core directive of my professional development is inspired by the technological benchmarks set by <span class="highlight-text">EA Games</span>. I meticulously analyze their implementation of large-scale asset management, networked gameplay optimization, and advanced physics simulation.</p>
-            <p>This dedication to high-fidelity, performant execution drives my own methodological approach to systems engineering.</p>
-        </div>
-    </section>
+    <div class="stat-block reveal">
+      <div class="stat-card">
+        <div class="stat-num">2028</div>
+        <div class="stat-label">Graduation Year</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">3+</div>
+        <div class="stat-label">Core Languages</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">01</div>
+        <div class="stat-label">Unity Project In Dev</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">TBD</div>
+        <div class="stat-label">Release Date</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <section id="project-tbd">
-        <h3>Architectural Directive: Unity, Unreal Engine</h3>
-        <p>Currently researching and compiling a component-based experience within the Unity and Unreal engine environment. The core project directive involves integrating advanced pathways and dynamic environmental state machines.</p>
-        
-        <p class="highlight-text">SYSTEM COMPILATION INITIATED...</p>
-        
-        <div class="tbd-counter">RELEASE_TBD</div>
-        
-        <p>Timeline optimization is ongoing. Release scheduled pending architectural verification.</p>
-    </section>
+<!-- ================= SKILLS ================= -->
+<section id="skills">
+  <div class="section-head reveal">
+    <span class="section-num">02</span>
+    <span class="section-title">Technical <span>Skills</span></span>
+    <span class="section-line"></span>
+  </div>
 
-    <footer>
-        <p>&copy; 2024 AJIT THAPA // PROJECTED COMPILATION: 2028. ALL RIGHTS RESERVED.</p>
-        <p style="margin-top: 10px; font-size: 0.8rem;">[ SYSTEM_STATUS: ONLINE ]</p>
-    </footer>
+  <div class="skills-grid">
+    <div class="skill-card reveal">
+      <div class="skill-head">
+        <span class="skill-name">C++</span>
+        <span class="skill-tag">SYSTEMS</span>
+      </div>
+      <p class="skill-desc">
+        Proficient in low-level memory management, pointer arithmetic, and manual resource
+        allocation. Comfortable applying object-oriented principles — encapsulation, inheritance,
+        and polymorphism — to build performant, deterministic applications.
+      </p>
+      <div class="bar-track"><div class="bar-fill" data-fill="88"></div></div>
+    </div>
+
+    <div class="skill-card reveal">
+      <div class="skill-head">
+        <span class="skill-name">Java</span>
+        <span class="skill-tag">OOP / JVM</span>
+      </div>
+      <p class="skill-desc">
+        Strong command of core OOP design patterns, exception handling, and JVM-based execution.
+        Experienced writing modular, maintainable code using interfaces, abstract classes, and
+        collections frameworks.
+      </p>
+      <div class="bar-track"><div class="bar-fill" data-fill="85"></div></div>
+    </div>
+
+    <div class="skill-card reveal">
+      <div class="skill-head">
+        <span class="skill-name">HTML / CSS</span>
+        <span class="skill-tag">FRONT-END</span>
+      </div>
+      <p class="skill-desc">
+        Solid grasp of semantic markup, the DOM, and CSS layout systems — building responsive,
+        accessible interfaces from raw markup without relying on heavy frameworks.
+      </p>
+      <div class="bar-track"><div class="bar-fill" data-fill="80"></div></div>
+    </div>
+
+    <div class="skill-card reveal">
+      <div class="skill-head">
+        <span class="skill-name">Unity Engine</span>
+        <span class="skill-tag">IN PROGRESS</span>
+      </div>
+      <p class="skill-desc">
+        Currently building fluency in Unity's component-based architecture, the GameObject/
+        MonoBehaviour lifecycle, and C# scripting for gameplay systems, physics, and UI —
+        the foundation for my first original title.
+      </p>
+      <div class="bar-track"><div class="bar-fill" data-fill="45"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= EA GAMES ================= -->
+<section id="ea">
+  <div class="section-head reveal">
+    <span class="section-num">03</span>
+    <span class="section-title">Why I <span>Game</span></span>
+    <span class="section-line"></span>
+  </div>
+
+  <div class="ea-panel reveal">
+    <div class="ea-media">
+      <img src="image_6a659a.jpg" alt="EA Games">
+    </div>
+    <div class="ea-text">
+      <h3>Fueled by <span>EA</span></h3>
+      <p>
+        My interest in game development didn't come from a textbook — it came from years of playing
+        EA titles and studying what makes their systems tick: the physics engines, the AI behavior
+        trees, the online infrastructure holding millions of concurrent players together.
+      </p>
+      <p>
+        Every match, every playthrough, became a small case study in how large-scale software
+        architecture supports real-time interactive experiences. That curiosity is what pushes me
+        to keep learning game engines and eventually build systems of my own.
+      </p>
+      <div class="ea-titles">
+        <span class="ea-chip">EA SPORTS FC</span>
+        <span class="ea-chip">Battlefield</span>
+        <span class="ea-chip">Apex Legends</span>
+        <span class="ea-chip">Madden NFL</span>
+        <span class="ea-chip">The Sims</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROJECTS ================= -->
+<section id="projects">
+  <div class="section-head reveal">
+    <span class="section-num">04</span>
+    <span class="section-title">Current <span>Projects</span></span>
+    <span class="section-line"></span>
+  </div>
+
+  <div class="project-card reveal">
+    <div class="project-media">
+      <img src="unity.jpg" alt="Development in progress">
+      <span class="project-status">In Development</span>
+    </div>
+    <div class="project-body">
+      <h3>Untitled Unity Project</h3>
+      <p>
+        My first solo game project, built from the ground up in Unity. I'm currently prototyping
+        core gameplay mechanics, designing the scene architecture, and scripting systems in C# —
+        with a strong focus on writing clean, reusable code as the project scales.
+      </p>
+      <div class="project-meta">
+        <span>ENGINE: <b>Unity</b></span>
+        <span>LANGUAGE: <b>C#</b></span>
+        <span>STATUS: <b>Prototyping</b></span>
+        <span>RELEASE: <b>TBD</b></span>
+      </div>
+      <div class="project-stack">
+        <span class="stack-pill">Unity Engine</span>
+        <span class="stack-pill">C#</span>
+        <span class="stack-pill">Game Design</span>
+        <span class="stack-pill">Version Control</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact" style="padding:0;">
+  <div class="contact-box reveal">
+    <h2>Let's Build Something <span>Together</span></h2>
+    <p>
+      Always open to connecting with fellow developers, gamers, and anyone curious about
+      software engineering or game design. Reach out below.
+    </p>
+    <div class="contact-links">
+      <a href="mailto:ajitthapa78@gmail.com" class="btn btn-primary">Email Me</a>
+      <a href="#" class="btn btn-ghost">GitHub</a>
+      <a href="#" class="btn btn-ghost">LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  &copy; 2026 Ajit Thapa — Compiled with <span>C++</span>, brewed with <span>coffee</span>.
+</footer>
+
+<script>
+  // Typewriter effect
+  const roles = [
+    "Software Developer",
+    "Game Development Enthusiast",
+    "Unity Beginner // Building My First Title",
+    "C++ & Java Programmer"
+  ];
+  const el = document.getElementById('typewriter');
+  let roleIndex = 0, charIndex = 0, deleting = false;
+
+  function typeLoop(){
+    const current = roles[roleIndex];
+    if(!deleting){
+      el.textContent = current.slice(0, ++charIndex);
+      if(charIndex === current.length){
+        deleting = true;
+        setTimeout(typeLoop, 1400);
+        return;
+      }
+    } else {
+      el.textContent = current.slice(0, --charIndex);
+      if(charIndex === 0){
+        deleting = false;
+        roleIndex = (roleIndex + 1) % roles.length;
+      }
+    }
+    setTimeout(typeLoop, deleting ? 35 : 65);
+  }
+  typeLoop();
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(elm => observer.observe(elm));
+
+  // Animate skill bars once visible
+  const bars = document.querySelectorAll('.bar-fill');
+  const barObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.style.width = entry.target.dataset.fill + '%';
+        barObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.4 });
+  bars.forEach(b => barObserver.observe(b));
+
+  // Nav link active highlight on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(sec => {
+      const rect = sec.getBoundingClientRect();
+      if(rect.top <= 120 && rect.bottom >= 120) current = sec.id;
+    });
+    navLinks.forEach(link => {
+      link.style.color = link.getAttribute('href') === '#' + current ? '#f1f1f5' : '';
+    });
+  });
+</script>
 
 </body>
 </html>
