@@ -3,32 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ajit Thapa | Future Software Engineer</title>
+    <title>AJIT THAPA | CORE ARCHITECT 2028</title>
+    <!-- Importing cool tech fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Share+Tech+Mono&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0c0d10;
+            --bg-color: #050505; /* Deeper black for higher contrast */
             --main-text-color: #e0e0e0;
-            --accent-blue: #00bfff;
-            --card-bg: #16181e;
-            --code-font: 'Courier New', Courier, monospace;
-            --main-font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            --glow: 0 0 10px var(--accent-blue);
+            --accent-neon-red: #ff073a; /* True neon red */
+            --dark-red: #c00000;
+            --card-bg: #111111;
+            --font-header: 'Orbitron', sans-serif;
+            --font-code: 'Share Tech Mono', monospace;
+            --font-body: 'Montserrat', sans-serif;
+            --neon-glow: 0 0 10px rgba(255, 7, 58, 0.8), 0 0 20px rgba(255, 7, 58, 0.6);
+            --neon-border-glow: 0 0 5px rgba(255, 7, 58, 0.5);
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            scroll-behavior: smooth;
         }
 
         body {
             background-color: var(--bg-color);
             color: var(--main-text-color);
-            font-family: var(--main-font);
-            line-height: 1.6;
+            font-family: var(--font-body);
+            line-height: 1.7;
             overflow-x: hidden;
+            letter-spacing: 0.5px;
         }
 
+        /* --- Animations --- */
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 10px rgba(255, 7, 58, 0.6); }
+            50% { box-shadow: 0 0 20px rgba(255, 7, 58, 0.9), 0 0 30px rgba(255, 7, 58, 0.7); }
+            100% { box-shadow: 0 0 10px rgba(255, 7, 58, 0.6); }
+        }
+
+        @keyframes textFlicker {
+            0% { opacity: 1; text-shadow: var(--neon-glow); }
+            2% { opacity: 0.8; text-shadow: none; }
+            4% { opacity: 1; text-shadow: var(--neon-glow); }
+            19% { opacity: 1; text-shadow: var(--neon-glow); }
+            20% { opacity: 0.9; text-shadow: none; }
+            21% { opacity: 1; text-shadow: var(--neon-glow); }
+            100% { opacity: 1; text-shadow: var(--neon-glow); }
+        }
+
+        @keyframes scanline {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100vh); }
+        }
+
+        /* --- Global Elements --- */
+        .scanline-effect {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: rgba(255, 7, 58, 0.1);
+            opacity: 0.3;
+            animation: scanline 8s linear infinite;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        a {
+            color: var(--accent-neon-red);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-family: var(--font-header);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        a:hover {
+            color: white;
+            text-shadow: var(--neon-glow);
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: #b0b0b0;
+            margin-bottom: 25px;
+            font-weight: 300;
+        }
+
+        .highlight-text {
+            color: var(--accent-neon-red);
+            font-weight: 700;
+            font-family: var(--font-header);
+        }
+
+        /* --- Header / Hero --- */
         header {
             height: 100vh;
             display: flex;
@@ -37,226 +110,395 @@
             text-align: center;
             flex-direction: column;
             position: relative;
-            background: radial-gradient(circle at center, #1b2131 0%, #0c0d10 70%);
+            background: 
+                radial-gradient(circle at center, #1a0206 0%, #050505 70%),
+                url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48ZyBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZjA3M2EiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTAgMGg0MHY0MEgwVjB6bTIwIDIwaDIwdjIwSDIWMjB6TTAgMjBoMjB2MjBIMFYyMHoyMCAwaDIwdjIwSDIwVjB6Ii8+PC9nPjwvZz48L3N2Zz4='); /* Subtle subtle grid */
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(to top, var(--bg-color), transparent);
         }
 
         header h1 {
-            font-size: 4rem;
+            font-family: var(--font-header);
+            font-size: 4.5rem;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 5px;
-            margin-bottom: 20px;
+            letter-spacing: 8px;
             color: white;
-            text-shadow: var(--glow);
+            text-shadow: var(--neon-glow);
+            animation: textFlicker 5s infinite;
+            margin-bottom: 10px;
         }
 
         header h2 {
+            font-family: var(--font-code);
+            font-size: 1.6rem;
             font-weight: 300;
-            color: #b0c4de;
-            margin-bottom: 30px;
-            font-size: 1.5rem;
+            color: #888;
+            letter-spacing: 2px;
+            margin-bottom: 40px;
         }
 
+        header .status-bar {
+            border: 1px solid var(--accent-neon-red);
+            padding: 10px 30px;
+            font-family: var(--font-code);
+            color: var(--accent-neon-red);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 60px;
+            box-shadow: var(--neon-border-glow);
+            animation: pulseGlow 3s infinite;
+        }
+
+        /* --- Section Styling --- */
         section {
-            padding: 80px 10vw;
+            padding: 120px 15vw;
+            position: relative;
         }
 
         h3 {
-            font-size: 2.5rem;
-            margin-bottom: 40px;
+            font-family: var(--font-header);
+            font-size: 2.8rem;
+            margin-bottom: 50px;
             color: white;
-            border-bottom: 2px solid var(--accent-blue);
+            text-transform: uppercase;
+            letter-spacing: 3px;
             display: inline-block;
-            padding-bottom: 10px;
+            position: relative;
         }
 
-        p {
-            font-size: 1.1rem;
-            color: #b0c4de;
-            margin-bottom: 20px;
-            max-width: 800px;
+        h3::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80%;
+            height: 3px;
+            background-color: var(--accent-neon-red);
+            box-shadow: var(--neon-glow);
+        }
+
+        /* --- About --- */
+        #about p {
+            max-width: 900px;
+        }
+
+        /* --- Coding / Skills --- */
+        #coding {
+            background: linear-gradient(135deg, #090909 0%, #050505 100%);
+            border-top: 1px solid #111;
+            border-bottom: 1px solid #111;
+        }
+
+        .coding-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
         }
 
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
         }
 
         .skill-card {
             background-color: var(--card-bg);
-            padding: 30px;
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: default;
+            padding: 40px;
+            border-radius: 4px;
+            border: 1px solid #1a1a1a;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-neon-red), transparent);
+            transition: all 0.6s;
         }
 
         .skill-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--glow);
+            transform: translateY(-8px);
+            border-color: var(--dark-red);
+            box-shadow: 0 10px 30px rgba(255, 7, 58, 0.2);
+        }
+
+        .skill-card:hover::before {
+            left: 100%;
         }
 
         .skill-title {
             color: white;
-            font-size: 1.5rem;
-            margin-bottom: 15px;
+            font-family: var(--font-header);
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
             display: flex;
             align-items: center;
         }
 
+        .skill-title::before {
+            content: '>';
+            color: var(--accent-neon-red);
+            font-family: var(--font-code);
+            margin-right: 15px;
+            text-shadow: var(--neon-glow);
+        }
+
         .skill-list {
             list-style: none;
+            font-family: var(--font-code);
+            font-size: 1rem;
+            color: #aaa;
         }
 
         .skill-list li {
-            font-family: var(--code-font);
-            color: var(--accent-blue);
-            margin-bottom: 8px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
         }
 
-        .gallery {
-            margin-top: 60px;
+        .skill-list li span {
+            color: var(--main-text-color);
         }
 
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .gallery-item {
-            background-color: var(--card-bg);
-            border-radius: 10px;
+        .coding-visual {
+            position: relative;
+            border: 1px solid #1a1a1a;
+            border-radius: 4px;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.5);
         }
 
-        .gallery-item img {
+        .coding-visual img {
             width: 100%;
-            height: 250px;
-            object-fit: cover;
             display: block;
+            transition: transform 0.5s ease;
         }
 
-        .gallery-label {
-            padding: 15px;
+        .coding-visual:hover img {
+            transform: scale(1.03);
+        }
+
+        /* --- EA/Gaming Section --- */
+        #gaming {
+            position: relative;
+            background-color: #080808;
+        }
+
+        .gaming-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .gaming-card {
+            position: relative;
+            border: 1px solid #111;
+            border-radius: 4px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .gaming-card:hover {
+            border-color: var(--dark-red);
+            box-shadow: 0 0 20px rgba(255, 7, 58, 0.3);
+        }
+
+        .gaming-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: grayscale(30%) contrast(110%);
+            transition: all 0.5s ease;
+        }
+
+        .gaming-card:hover img {
+            filter: grayscale(0%) contrast(100%);
+            transform: scale(1.02);
+        }
+
+        .gaming-description {
+            padding: 30px;
+            background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.9));
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+        }
+
+        .gaming-description h4 {
+            font-family: var(--font-header);
             color: white;
-            font-size: 0.9rem;
-            font-family: var(--code-font);
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 1.4rem;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
         }
 
+        .ea-focus {
+            max-width: 800px;
+            margin: 80px auto 0 auto;
+            border-left: 3px solid var(--accent-neon-red);
+            padding: 40px;
+            background-color: var(--card-bg);
+            box-shadow: var(--neon-border-glow);
+        }
+
+        /* --- Project TBD --- */
+        #project-tbd {
+            text-align: center;
+            background: radial-gradient(circle at center, #101010 0%, var(--bg-color) 100%);
+        }
+
+        #project-tbd h3 {
+            animation: textFlicker 8s infinite;
+        }
+
+        .tbd-counter {
+            font-family: var(--font-header);
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--accent-neon-red);
+            text-shadow: var(--neon-glow);
+            margin: 40px 0;
+            letter-spacing: 5px;
+        }
+
+        /* --- Footer --- */
         footer {
             text-align: center;
-            padding: 40px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 60px;
+            border-top: 1px solid #111;
             font-size: 0.9rem;
-            color: #808080;
-        }
-
-        .cta-button {
-            margin-top: 40px;
-            padding: 15px 35px;
-            background-color: transparent;
-            color: var(--accent-blue);
-            border: 2px solid var(--accent-blue);
-            font-size: 1.1rem;
-            cursor: pointer;
+            color: #666;
+            font-family: var(--font-code);
             text-transform: uppercase;
-            border-radius: 5px;
-            transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
-            display: inline-block;
-            text-decoration: none;
+            letter-spacing: 1px;
         }
 
-        .cta-button:hover {
-            background-color: var(--accent-blue);
-            color: var(--bg-color);
-            box-shadow: var(--glow);
+        /* --- Media Queries --- */
+        @media (max-width: 1200px) {
+            header h1 { font-size: 3.5rem; letter-spacing: 5px; }
+            section { padding: 100px 8vw; }
+            .coding-container { grid-template-columns: 1fr; }
         }
 
         @media (max-width: 768px) {
-            header h1 {
-                font-size: 2.5rem;
-            }
-            header h2 {
-                font-size: 1.2rem;
-            }
-            section {
-                padding: 60px 5vw;
-            }
+            header h1 { font-size: 2.5rem; letter-spacing: 3px; }
+            header h2 { font-size: 1.2rem; }
+            h3 { font-size: 2rem; }
+            .gaming-grid { grid-template-columns: 1fr; }
+            section { padding: 80px 5vw; }
         }
+
     </style>
 </head>
 <body>
 
+    <div class="scanline-effect"></div>
+
     <header>
+        <div class="status-bar">System Status: Operational // Class of 2028</div>
         <h1>AJIT THAPA</h1>
-        <h2>Computer Science Student & Aspiring Developer</h2>
-        <p>Software Development Student, Class of 2028. Crafting code and exploring virtual realms.</p>
-        <a href="#about" class="cta-button">Explore My World</a>
+        <h2>Core Architect. Developer. Gaming Enthusiast.</h2>
+        <a href="#about">> INITIALIZE EXPLORATION</a>
     </header>
 
     <section id="about">
-        <h3>Introduction</h3>
-        <p>Hello! I am Ajit Thapa, a dedicated Software Development student with an anticipated graduation in 2028. My journey in technology is driven by a profound fascination with engineering digital systems and a life-long passion for interactive media.</p>
-        <p>Beyond the fundamental principles of data structures and algorithms, I explore the complex logic involved in application systems. Whether it is optimizing a rendering pipeline for real-time applications or designing a clean, component-based user interface, I find deep satisfaction in the elegant execution of technical concepts.</p>
-        <p>A key area of my focus is leveraging computer science to push the boundaries of software functionality and visual fidelity, blending rigorous engineering with creative design.</p>
+        <h3>System.init()</h3>
+        <p>I am Ajit Thapa, a dedicated Software Development student projecting a 2028 completion cycle. My engineering directive focuses on compiling robust algorithmic solutions, optimizing complex data structures, and architecting elegant digital frameworks.</p>
+        <p>My methodology merges mathematical precision with structural logic, transforming abstract concepts into high-performance executed systems. I am particularly interested in the intersection of <span class="highlight-text">system-level optimization</span> and intuitive user interface design.</p>
     </section>
 
-    <section id="skills">
-        <h3>Technical Expertise</h3>
-        <p>A summary of the core languages and tools within my developmental framework.</p>
-        <div class="skills-grid">
-            <div class="skill-card">
-                <div class="skill-title">Programming</div>
-                <ul class="skill-list">
-                    <li>std::cpp Proficiency</li>
-                    <li>Object-Oriented Java</li>
-                    <li>Responsive HTML/CSS</li>
-                    <li>JavaScript Core Principles</li>
-                </ul>
+    <section id="coding">
+        <h3>Technical Compilations</h3>
+        <p>Leveraging low-level control and high-level abstraction to engineer performant systems.</p>
+        
+        <div class="coding-container">
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-title">Core Languages</div>
+                    <ul class="skill-list">
+                        <li>System Programming: <span>C++ // std</span></li>
+                        <li>Platform Independent: <span>Java // JVM</span></li>
+                        <li>Structural Markup: <span>HTML // DOM</span></li>
+                        <li>Dynamic Execution: <span>JavaScript</span></li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-title">Systems Architecture</div>
+                    <ul class="skill-list">
+                        <li>Pattern Implementation: <span>OOP // MVC</span></li>
+                        <li>Resource Management</li>
+                        <li>State Optimization</li>
+                        <li>Component-Based Design</li>
+                    </ul>
+                </div>
             </div>
-            <div class="skill-card">
-                <div class="skill-title">Development Focus</div>
-                <ul class="skill-list">
-                    <li>Game Engine Architecture</li>
-                    <li>Application Design Patterns</li>
-                    <li>System-Level Programming</li>
-                    <li>Algorithmic Optimization</li>
-                </ul>
+            
+            <div class="coding-visual">
+                <img src="image_6a68f8.png" alt="Integrated Development Environment interface illustrating code structure and context management.">
             </div>
         </div>
     </section>
 
-    <section id="projects">
-        <h3>Interests & Projects</h3>
-        <p>I am an avid enthusiast of gaming and game development, analyzing both as a consumer and as a budding engineer. In the commercial sphere, I particularly admire the craftsmanship and visceral realism in EA games.</p>
-        <p>My current primary focus is on independent game development within the Unity engine. I am implementing component-based software design to build engaging core loops. 
-            My inaugural project is in the initial development cycle. Project Release Date: TBD.</p>
-    </section>
-
-    <section id="gallery">
-        <h3>Visual References</h3>
-        <p>A curated selection of images illustrating my areas of technological immersion.</p>
-        <div class="gallery-grid">
-            <div class="gallery-item">
-                <img src="image_6a659a.jpg" alt="Dynamic soccer action shot">
-                <div class="gallery-label">Fig 1. Simulation of high-fidelity real-time physics and competitive player mechanics.</div>
+    <section id="gaming">
+        <h3>Interactive Mechanics & Physics</h3>
+        <p>Analyzing cinematic fidelity, environmental rendering pipelines, and systemic gameplay logic within modern interactive media.</p>
+        
+        <div class="gaming-grid">
+            <div class="gaming-card">
+                <img src="image_6a659a.jpg" alt="Dynamic real-time simulation shot focusing on complex animation and physics interaction.">
+                <div class="gaming-description">
+                    <h4>Real-Time Simulation</h4>
+                </div>
             </div>
-            <div class="gallery-item">
-                <img src="image_6a68f8.png" alt="Close-up of code on screen">
-                <div class="gallery-label">Fig 2. Component-based architecture development using modern frameworks.</div>
-            </div>
-            <div class="gallery-item">
-                <img src="image_6a6978.jpg" alt="Military squad with city on fire">
-                <div class="gallery-label">Fig 3. Analysis of environmental rendering and complex asset management in cinematic experiences.</div>
+            <div class="gaming-card">
+                <img src="image_6a6978.jpg" alt="Cinematic environmental rendering illustrating complex lighting and shader techniques.">
+                <div class="gaming-description">
+                    <h4>Atmospheric Rendering</h4>
+                </div>
             </div>
         </div>
+
+        <div class="ea-focus">
+            <p>A significant core directive of my professional development is inspired by the technological benchmarks set by <span class="highlight-text">EA Games</span>. I meticulously analyze their implementation of large-scale asset management, networked gameplay optimization, and advanced physics simulation.</p>
+            <p>This dedication to high-fidelity, performant execution drives my own methodological approach to systems engineering.</p>
+        </div>
+    </section>
+
+    <section id="project-tbd">
+        <h3>Architectural Directive: Unity</h3>
+        <p>Currently researching and compiling a component-based experience within the Unity environment. The core project directive involves integrating advanced AI pathways and dynamic environmental state machines.</p>
+        
+        <p class="highlight-text">SYSTEM COMPILATION INITIATED...</p>
+        
+        <div class="tbd-counter">RELEASE_TBD</div>
+        
+        <p>Timeline optimization is ongoing. Release scheduled pending architectural verification.</p>
     </section>
 
     <footer>
-        <p>&copy; 2024 Ajit Thapa | Building the future, one commit at a time.</p>
+        <p>&copy; 2024 AJIT THAPA // PROJECTED COMPILATION: 2028. ALL RIGHTS RESERVED.</p>
+        <p style="margin-top: 10px; font-size: 0.8rem;">[ SYSTEM_STATUS: ONLINE ]</p>
     </footer>
 
 </body>
